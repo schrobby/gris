@@ -15,7 +15,7 @@ class SearchResults:
 
     def __init__(self, image_url=None, timeout=None):
         self.best_guess = None
-        self.timeout = 10 if timeout is None else timeout
+        self.timeout = 10 if not timeout else timeout
         self.res_urls = dict()
         for i in RES_OPTIONS:
             self.res_urls[i] = None
@@ -40,6 +40,10 @@ class SearchResults:
 
 if __name__ == "__main__":
     import sys
+
+    if len(sys.argv) < 2:
+        print("Usage: %s <image_url>" % sys.argv[0])
+        sys.exit()
 
     urls_string = ""
     results = search_by_url(sys.argv[1])
